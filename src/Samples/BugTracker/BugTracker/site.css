@@ -1,0 +1,124 @@
+﻿body
+{
+    font-family: tahoma;
+    font-size: 12px;
+}
+
+
+.details
+{
+    padding: 2px;
+    border-collapse: collapse;
+    font-family: Tahoma;
+    font-size: 12px;
+    border: 1px solid #808080;
+    border-spacing: 2px;
+}
+
+.sitehider
+{
+    font-family: tahoma;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666699;
+}
+.subtitle
+{
+    font-family: tahoma;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666699;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+.button
+{
+    font-family: tahoma;
+    font-size: 12px;
+    font-weight: normal;
+    color: #666699;
+    border: 1px solid #666699;
+    background-color: #FFFFFF;
+}
+.grid
+{
+    border-width: 1px 0px 1px 0px;
+    border-style: solid none solid none;
+    padding: 2px;
+    border-collapse: collapse;
+    font-family: tahoma;
+    font-size: 12px;
+    margin-right: 2px;
+    margin-left: 2px;
+    border-top-color: #666699;
+    border-bottom-color: #666699;
+    table-layout: auto;
+    border-spacing: 2px;
+    width: 100%;
+}
+
+.grid td
+{
+    border-collapse: collapse;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding-right: 3px;
+    margin-right: 3px;
+    padding-left: 3px;
+    margin-left: 3px;
+    border-top-color: #666699;
+    border-bottom-color: #666699;
+}
+
+.grid th
+{
+    border-collapse: collapse;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding-right: 3px;
+    margin-right: 3px;
+    padding-left: 3px;
+    margin-left: 3px;
+    border-top-color: #666699;
+    border-bottom-color: #666699;
+    font-weight: bold;
+    background-color: #dddddd;
+}
+.menu
+{
+    background-color: #dddddd;
+    font-family: tahoma;
+    font-size: 13px;
+    font-weight: bold;
+    padding-right: 4px;
+    padding-left: 4px;
+    
+}
+.menu td
+{
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #666699;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #666699;
+}
+input
+{
+    font-family: tahoma;
+    font-size: 12px;
+    border: 1px solid #666699;
+}
+
+select
+{
+    font-family: tahoma;
+    font-size: 12px;
+    border: 1px solid #666699;
+}

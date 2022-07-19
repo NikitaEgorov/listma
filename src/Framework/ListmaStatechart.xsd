@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:Listma:Statechart" xmlns:lsm="urn:Listma:Statechart"  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Statechart">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="State">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="Description" type="lsm:Description" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="Transition">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="1" name="Description" type="lsm:Description" />
+                    <xs:element minOccurs="0" name="Performers">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="Performer">
+                            <xs:complexType>
+                              <xs:attribute name="Role" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Notifications" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Notification">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="1" name="To">
+                                  <xs:complexType>
+                                    <xs:attribute name="Role" type="xs:string" use="optional" />
+                                    <xs:attribute name="Address" type="xs:string" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Cc">
+                                  <xs:complexType>
+                                    <xs:attribute name="Role" type="xs:string" use="optional" />
+                                    <xs:attribute name="Address" type="xs:string" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="TemplateId" type="xs:string" use="required" />
+                              <xs:attribute name="Handler" type="xs:string" use="optional" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="Title" type="xs:string" use="required" />
+                  <xs:attribute name="TargetState" type="xs:string" use="required" />
+                  <xs:attribute name="Handler" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="UIPermissions" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="UIElement">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Permission">
+                            <xs:complexType>
+                              <xs:attribute name="Role" type="xs:string" use="required" />
+                              <xs:attribute name="Level" type="lsm:PermissionLevel" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:string" use="required" />
+            <xs:attribute name="Title" type="xs:string" use="required" />
+            <xs:attribute name="Initial" type="xs:boolean" use="optional" />
+            <xs:attribute name="OnEnterHandler" type="xs:string" use="optional" />
+            <xs:attribute name="OnExitHandler" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NotifyTemplates" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="NotifyTemplate">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Subject" type="xs:string" minOccurs="1" />
+                    <xs:element name="Body" type="xs:string" minOccurs="1" />
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="PermissionLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Hidden" />
+      <xs:enumeration value="Read" />
+      <xs:enumeration value="Write" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Description">
+    <xs:attribute name="Src" type="xs:string" use="optional" />
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Statechart Id="StartWorkflowTest" xmlns="urn:Listma:Statechart">
+	<State Id="Initial1" Title="Initial1" Initial="true" OnEnterHandler="" OnExitHandler="">
+		<Transition Id="ToFinal1" Title="To Final1" TargetState="Final1" />
+		<Transition Id="ToFinal2" Title="To Final2" TargetState="Final2" />
+		<Transition Id="ToInitial2" Title="To Initial2" TargetState="Initial2" />
+	</State>
+	<State Id="Initial2" Title="initial2" Initial="true" >
+		<Transition Id="ToFinal1" Title="To Final1" TargetState="Final1" />
+		<Transition Id="ToFinal2" Title="To Final2" TargetState="Final2" />
+	</State>
+	<State Id="Final1" Title="Final1" Initial="false"/>
+	<State Id="Final2" Title="Final2" Initial="false"/>
+</Statechart>

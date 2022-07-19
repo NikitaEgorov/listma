@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bugtrackerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="bugtrackerModelStoreContainer">
+          <EntitySet Name="Issue" EntityType="bugtrackerModel.Store.Issue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IssueType" EntityType="bugtrackerModel.Store.IssueType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Project" EntityType="bugtrackerModel.Store.Project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectTeam" EntityType="bugtrackerModel.Store.ProjectTeam" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="bugtrackerModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="bugtrackerModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Issue_IssueType" Association="bugtrackerModel.Store.FK_Issue_IssueType">
+            <End Role="IssueType" EntitySet="IssueType" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Project" Association="bugtrackerModel.Store.FK_Issue_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_User" Association="bugtrackerModel.Store.FK_Issue_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_User1" Association="bugtrackerModel.Store.FK_Issue_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Project" Association="bugtrackerModel.Store.FK_ProjectTeam_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Role" Association="bugtrackerModel.Store.FK_ProjectTeam_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_User" Association="bugtrackerModel.Store.FK_ProjectTeam_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Short" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+          <Property Name="AccignedTo" Type="int" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="IssueType">
+          <Key>
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProjectTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Pwdhash" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Issue_IssueType">
+          <End Role="IssueType" Type="bugtrackerModel.Store.IssueType" Multiplicity="1" />
+          <End Role="Issue" Type="bugtrackerModel.Store.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IssueType">
+              <PropertyRef Name="Type" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_Project">
+          <End Role="Project" Type="bugtrackerModel.Store.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Issue" Type="bugtrackerModel.Store.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_User">
+          <End Role="User" Type="bugtrackerModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Issue" Type="bugtrackerModel.Store.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_User1">
+          <End Role="User" Type="bugtrackerModel.Store.User" Multiplicity="0..1" />
+          <End Role="Issue" Type="bugtrackerModel.Store.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="AccignedTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeam_Project">
+          <End Role="Project" Type="bugtrackerModel.Store.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeam" Type="bugtrackerModel.Store.ProjectTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeam">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeam_Role">
+          <End Role="Role" Type="bugtrackerModel.Store.Role" Multiplicity="1" />
+          <End Role="ProjectTeam" Type="bugtrackerModel.Store.ProjectTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeam">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeam_User">
+          <End Role="User" Type="bugtrackerModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeam" Type="bugtrackerModel.Store.ProjectTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeam">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bugtrackerModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="DBContext">
+          <EntitySet Name="Issue" EntityType="bugtrackerModel.Issue" />
+          <EntitySet Name="Project" EntityType="bugtrackerModel.Project" />
+          <EntitySet Name="ProjectTeam" EntityType="bugtrackerModel.ProjectTeam" />
+          <EntitySet Name="Role" EntityType="bugtrackerModel.Role" />
+          <EntitySet Name="User" EntityType="bugtrackerModel.User" />
+          <AssociationSet Name="FK_Issue_Project" Association="bugtrackerModel.FK_Issue_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_User" Association="bugtrackerModel.FK_Issue_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_User1" Association="bugtrackerModel.FK_Issue_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Project" Association="bugtrackerModel.FK_ProjectTeam_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Role" Association="bugtrackerModel.FK_ProjectTeam_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_User" Association="bugtrackerModel.FK_ProjectTeam_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+          <EntitySet Name="IssueType" EntityType="bugtrackerModel.IssueType" />
+          <AssociationSet Name="FK_Issue_IssueType" Association="bugtrackerModel.FK_Issue_IssueType">
+            <End Role="IssueType" EntitySet="IssueType" />
+            <End Role="Issue" EntitySet="Issue" /></AssociationSet></EntityContainer>
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Short" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <NavigationProperty Name="Project" Relationship="bugtrackerModel.FK_Issue_Project" FromRole="Issue" ToRole="Project" />
+          <NavigationProperty Name="Owner" Relationship="bugtrackerModel.FK_Issue_User" FromRole="Issue" ToRole="User" />
+          <NavigationProperty Name="AssignedTo" Relationship="bugtrackerModel.FK_Issue_User1" FromRole="Issue" ToRole="User" />
+          <NavigationProperty Name="Type" Relationship="bugtrackerModel.FK_Issue_IssueType" FromRole="Issue" ToRole="IssueType" />
+          <Property Name="Result" Type="String" Nullable="true" /></EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="StartDate" Type="DateTime" />
+          <NavigationProperty Name="Issues" Relationship="bugtrackerModel.FK_Issue_Project" FromRole="Project" ToRole="Issue" />
+          <NavigationProperty Name="Team" Relationship="bugtrackerModel.FK_ProjectTeam_Project" FromRole="Project" ToRole="ProjectTeam" />
+        </EntityType>
+        <EntityType Name="ProjectTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="bugtrackerModel.FK_ProjectTeam_Project" FromRole="ProjectTeam" ToRole="Project" />
+          <NavigationProperty Name="Role" Relationship="bugtrackerModel.FK_ProjectTeam_Role" FromRole="ProjectTeam" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="bugtrackerModel.FK_ProjectTeam_User" FromRole="ProjectTeam" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TeamRoles" Relationship="bugtrackerModel.FK_ProjectTeam_Role" FromRole="Role" ToRole="ProjectTeam" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Pwdhash" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="OwnedIssues" Relationship="bugtrackerModel.FK_Issue_User" FromRole="User" ToRole="Issue" />
+          <NavigationProperty Name="AssignedIssues" Relationship="bugtrackerModel.FK_Issue_User1" FromRole="User" ToRole="Issue" />
+          <NavigationProperty Name="ProjectTeams" Relationship="bugtrackerModel.FK_ProjectTeam_User" FromRole="User" ToRole="ProjectTeam" />
+        </EntityType>
+        <Association Name="FK_Issue_Project">
+          <End Role="Project" Type="bugtrackerModel.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Issue" Type="bugtrackerModel.Issue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Issue_User">
+          <End Role="User" Type="bugtrackerModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Issue" Type="bugtrackerModel.Issue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Issue_User1">
+          <End Role="User" Type="bugtrackerModel.User" Multiplicity="0..1" />
+          <End Role="Issue" Type="bugtrackerModel.Issue" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ProjectTeam_Project">
+          <End Role="Project" Type="bugtrackerModel.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeam" Type="bugtrackerModel.ProjectTeam" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ProjectTeam_Role">
+          <End Role="Role" Type="bugtrackerModel.Role" Multiplicity="1" />
+          <End Role="ProjectTeam" Type="bugtrackerModel.ProjectTeam" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ProjectTeam_User">
+          <End Role="User" Type="bugtrackerModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeam" Type="bugtrackerModel.ProjectTeam" Multiplicity="*" />
+        </Association>
+        <EntityType Name="IssueType">
+          <Key>
+            <PropertyRef Name="Type" /></Key>
+          <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="Issues" Relationship="bugtrackerModel.FK_Issue_IssueType" FromRole="IssueType" ToRole="Issue" /></EntityType>
+        <Association Name="FK_Issue_IssueType">
+          <End Type="bugtrackerModel.IssueType" Role="IssueType" Multiplicity="1" />
+          <End Type="bugtrackerModel.Issue" Role="Issue" Multiplicity="*" /></Association></Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="bugtrackerModelStoreContainer" CdmEntityContainer="DBContext">
+          <EntitySetMapping Name="Issue">
+            <EntityTypeMapping TypeName="IsTypeOf(bugtrackerModel.Issue)">
+              <MappingFragment StoreEntitySet="Issue">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Short" ColumnName="Short" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="IsTypeOf(bugtrackerModel.Project)">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectTeam">
+            <EntityTypeMapping TypeName="IsTypeOf(bugtrackerModel.ProjectTeam)">
+              <MappingFragment StoreEntitySet="ProjectTeam">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="IsTypeOf(bugtrackerModel.Role)">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="IsTypeOf(bugtrackerModel.User)">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pwdhash" ColumnName="Pwdhash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Issue_Project" TypeName="bugtrackerModel.FK_Issue_Project" StoreEntitySet="Issue">
+            <EndProperty Name="Project">
+              <ScalarProperty Name="Id" ColumnName="ProjectId" />
+            </EndProperty>
+            <EndProperty Name="Issue">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Issue_User" TypeName="bugtrackerModel.FK_Issue_User" StoreEntitySet="Issue">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="OwnerId" />
+            </EndProperty>
+            <EndProperty Name="Issue">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Issue_User1" TypeName="bugtrackerModel.FK_Issue_User1" StoreEntitySet="Issue">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="AccignedTo" />
+            </EndProperty>
+            <EndProperty Name="Issue">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="AccignedTo" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ProjectTeam_Project" TypeName="bugtrackerModel.FK_ProjectTeam_Project" StoreEntitySet="ProjectTeam">
+            <EndProperty Name="Project">
+              <ScalarProperty Name="Id" ColumnName="ProjectId" />
+            </EndProperty>
+            <EndProperty Name="ProjectTeam">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ProjectTeam_Role" TypeName="bugtrackerModel.FK_ProjectTeam_Role" StoreEntitySet="ProjectTeam">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="ProjectTeam">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ProjectTeam_User" TypeName="bugtrackerModel.FK_ProjectTeam_User" StoreEntitySet="ProjectTeam">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="ProjectTeam">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="IssueType">
+            <EntityTypeMapping TypeName="IsTypeOf(bugtrackerModel.IssueType)">
+              <MappingFragment StoreEntitySet="IssueType">
+                <ScalarProperty Name="Type" ColumnName="Type" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_Issue_IssueType" TypeName="bugtrackerModel.FK_Issue_IssueType" StoreEntitySet="Issue">
+            <EndProperty Name="Issue">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="IssueType">
+              <ScalarProperty Name="Type" ColumnName="Type" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="DomainModel">
+        <EntityTypeShape EntityType="bugtrackerModel.Issue" Width="1.5" PointX="0.875" PointY="0.5" Height="2.41404296875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bugtrackerModel.Project" Width="1.5" PointX="3.125" PointY="3.25" Height="1.9210009765625005" IsExpanded="true" />
+        <EntityTypeShape EntityType="bugtrackerModel.ProjectTeam" Width="1.5" PointX="5.25" PointY="3.25" Height="1.5923063151041665" IsExpanded="true" />
+        <EntityTypeShape EntityType="bugtrackerModel.Role" Width="1.5" PointX="6.5" PointY="0.5" Height="1.427958984375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bugtrackerModel.User" Width="1.5" PointX="4.375" PointY="0.5" Height="2.0853483072916665" IsExpanded="true" />
+        <AssociationConnector Association="bugtrackerModel.FK_Issue_Project" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.71875" PointY="3.25" />
+          <ConnectorPoint PointX="3.71875" PointY="2.7809456380208335" />
+          <ConnectorPoint PointX="2.375" PointY="2.7809456380208335" /></AssociationConnector>
+        <AssociationConnector Association="bugtrackerModel.FK_Issue_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.375" PointY="1.8345926920572917" />
+          <ConnectorPoint PointX="2.375" PointY="1.8345926920572917" />
+          </AssociationConnector>
+        <AssociationConnector Association="bugtrackerModel.FK_Issue_User1" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.375" PointY="1.1047963460286459" />
+          <ConnectorPoint PointX="2.375" PointY="1.1047963460286459" />
+          </AssociationConnector>
+        <AssociationConnector Association="bugtrackerModel.FK_ProjectTeam_Project" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.625" PointY="4.0461531575520837" />
+          <ConnectorPoint PointX="5.25" PointY="4.0461531575520837" />
+          </AssociationConnector>
+        <AssociationConnector Association="bugtrackerModel.FK_ProjectTeam_Role" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.3750005000000005" PointY="1.927958984375" />
+          <ConnectorPoint PointX="7.3750005000000005" PointY="4.0461531575520837" />
+          <ConnectorPoint PointX="6.75" PointY="4.0461531575520837" /></AssociationConnector>
+        <AssociationConnector Association="bugtrackerModel.FK_ProjectTeam_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.5625" PointY="2.5853483072916665" />
+          <ConnectorPoint PointX="5.5625" PointY="3.25" />
+          </AssociationConnector>
+        <EntityTypeShape EntityType="bugtrackerModel.IssueType" Width="1.5" PointX="0.875" PointY="3.625" Height="1.2636116536458335" />
+        <AssociationConnector Association="bugtrackerModel.FK_Issue_IssueType" >
+          <ConnectorPoint PointX="1.625" PointY="3.625" />
+          <ConnectorPoint PointX="1.625" PointY="2.91404296875" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

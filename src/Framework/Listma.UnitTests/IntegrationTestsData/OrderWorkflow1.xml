@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Statechart Id="OrderWorkflow1" xmlns="urn:Listma:Statechart">
+	<State Id="Draft" Title="Drart" Initial="true" 
+		   OnEnterHandler="Listma.Test.StateEnterHandler, Listma.Test.Handlers"
+		   OnExitHandler="Listma.Test.StateExitHandler, Listma.Test.Handlers">
+		<Description Src="filename"></Description>
+		<Transition Id="Send" Title="Send to processing" TargetState="Processing" Handler="Listma.Test.ContextHandler, Listma.Test.Handlers">
+			<Description Src="filename"></Description>
+		</Transition>
+		<Transition Id="Cancel" Title="Cancel order" TargetState="Canceled" Handler="Listma.Test.OrderCancelHandler, Listma.Test.Handlers">
+			<Description Src="filename"></Description>
+		</Transition>
+	</State>
+	<State Id="Processing" Title="Processing" Initial="false" 
+		   OnEnterHandler="Listma.Test.StateEnterHandler, Listma.Test.Handlers"
+		   OnExitHandler="Listma.Test.StateExitHandler, Listma.Test.Handlers">
+		<Transition Id="Process" Title="Process order" TargetState="Archive" >
+			<Description Src="filename"></Description>
+		</Transition>
+		<Transition Id="Cancel" Title="Cancel order" TargetState="Canceled">
+			<Description Src="filename"></Description>
+		</Transition>
+	</State>
+	<State Id="Archive" Title="Archive" Initial="false" OnEnterHandler="" ></State>
+	<State Id="Canceled" Title="Canceled" Initial="false" OnEnterHandler="Listma.Test.StateEnterHandler, Listma.Test.Handlers" ></State>
+	
+</Statechart>

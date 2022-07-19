@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:Listma:configuration" xmlns:lsm="urn:Listma:Statechart" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="ListmaStatechart.xsd" namespace="urn:Listma:Statechart" xmlns:lsm="urn:Listma:Statechart" />
+  <xs:element name="ListmaConfiguration">
+		<xs:complexType>
+			<xs:sequence>
+			  <xs:element minOccurs="0" maxOccurs="unbounded" name="EntityWorkflow">
+								<xs:complexType>
+                  <xs:attribute name="EntityType" type="xs:ID" use="required" />
+									<xs:attribute name="StatechartId" type="xs:string" use="required" />
+                  <xs:attribute name="StateMap" type="xs:string" use="required" />
+                  <xs:attribute name="StatechartMap" type="xs:string" use="optional" />
+									<xs:attribute name="InitialState" type="xs:string" use="optional" default="*" />
+                  <xs:attribute name="WorkflowFactoryClass" type="xs:string" use="optional" />
+                  <xs:attribute name="RoleProviderClass" type="xs:string" use="optional" />
+								</xs:complexType>
+							</xs:element>
+			</xs:sequence>
+      <xs:attribute name="StatechartDir" type="xs:string" use="optional" />
+      <xs:attribute name="DefaultPermissionLevel" type="lsm:PermissionLevel" use="optional"  />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

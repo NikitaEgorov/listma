@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Statechart Id="NotificationWorkflowTest" xmlns="urn:Listma:Statechart">
+	<State Id="Initial1" Title="Initial1" Initial="true" OnEnterHandler="" OnExitHandler="">
+		<Transition Id="ToFinal1" Title="To Final1" TargetState="Final1">
+			<Notifications>
+				<Notification TemplateId="Notify1" >
+					<To Role="Role1" />
+					<To Address="address1@mail.ru" />
+					<Cc Role="Role2" />
+					<Cc Address="address2@mail.ru" />
+				</Notification>
+				<Notification TemplateId="Notify2" >
+					<To Address="address1@mail.ru" />
+					<To Address="address2@mail.ru" />
+					<Cc Address="address1@mail.ru" />
+					<Cc Address="address3@mail.ru" />
+				</Notification>
+			</Notifications>
+			
+		</Transition>
+		<Transition Id="ToFinal2" Title="To Final2" TargetState="Final1">
+			<Notifications>
+				<Notification TemplateId="Notify3" Handler="Listma.Test.NotifyHandler, Listma.Test.Handlers" >
+					<To Role="Role1" />
+					<Cc Role="Role2" />
+				</Notification>
+			</Notifications>
+		</Transition>
+	</State>
+	<State Id="Final1" Title="Final1" Initial="false"/>
+	<NotifyTemplates>
+		<NotifyTemplate Id="Notify1">
+			<Subject><![CDATA[<subject>Notify1</subject>]]></Subject>
+			<Body><![CDATA[<body>Notify1</body>]]></Body>
+		</NotifyTemplate>
+		<NotifyTemplate Id="Notify2">
+			<Subject>Notify2 subject</Subject>
+			<Body>Notify2 body</Body>
+		</NotifyTemplate>
+		<NotifyTemplate Id="Notify3">
+			<Subject>Notify subject ${Handler}</Subject>
+			<Body>Notify2 body ${Handler}</Body>
+		</NotifyTemplate>
+	</NotifyTemplates>
+</Statechart>

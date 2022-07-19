@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D6C3EE0-0853-4618-B7C1-6E8D94CCA175}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Listma</RootNamespace>
+    <AssemblyName>Listma</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Listma.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthorizationService.cs" />
+    <Compile Include="ConfigProvider.cs" />
+    <Compile Include="Configuration\EntityWorkflow.cs" />
+    <Compile Include="Configuration\EntityWorkflowData.cs" />
+    <Compile Include="Configuration\LismaConfigurationData.cs" />
+    <Compile Include="EntityFactoryService.cs" />
+    <Compile Include="IConfigProvider.cs" />
+    <Compile Include="IHandler.cs" />
+    <Compile Include="INotifyHandler.cs" />
+    <Compile Include="IPermissionProvider.cs" />
+    <Compile Include="IRoleProvider.cs" />
+    <Compile Include="ISecurable.cs" />
+    <Compile Include="ITransitionHandler.cs" />
+    <Compile Include="IWorkflowAdapter.cs" />
+    <Compile Include="IWorkflowFactory.cs" />
+    <Compile Include="Metadata\Notification.cs" />
+    <Compile Include="Metadata\NotifyTemplate.cs" />
+    <Compile Include="Metadata\Performer.cs" />
+    <Compile Include="Metadata\Permission.cs" />
+    <Compile Include="Metadata\StatechartBuilder.cs" />
+    <Compile Include="Metadata\Transition.cs" />
+    <Compile Include="Metadata\Description.cs" />
+    <Compile Include="Metadata\State.cs" />
+    <Compile Include="Metadata\StateChart.cs" />
+    <Compile Include="Metadata\StateChartCache.cs" />
+    <Compile Include="Metadata\UIElement.cs" />
+    <Compile Include="NotifyProcessor.cs" />
+    <Compile Include="NotifyMessage.cs" />
+    <Compile Include="PermissionProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectedTypeCache.cs" />
+    <Compile Include="ReflectionFactory.cs" />
+    <Compile Include="ReflectionEntityWorkflow.cs" />
+    <Compile Include="RoleProvider.cs" />
+    <Compile Include="RuntimeHandler.cs" />
+    <Compile Include="RuntimeNotifyHandler.cs" />
+    <Compile Include="RuntimeTransitionHandler.cs" />
+    <Compile Include="StateInfo.cs" />
+    <Compile Include="StateMachine.cs" />
+    <Compile Include="TransitionInfo.cs" />
+    <Compile Include="UIPermissionLevel.cs" />
+    <Compile Include="Utils\Extension.cs" />
+    <Compile Include="Utils\XmlUtil.cs" />
+    <Compile Include="WorkflowException.cs" />
+    <Compile Include="ListmaManager.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

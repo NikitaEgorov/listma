@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Statechart Id="BuqWorkflow" xmlns="urn:Listma:Statechart">
+  <State Id="New" Title="New" Initial="true">
+    <Transition Id="Assign" Title="Assign" TargetState="Assigned">
+      <Performers>
+        <Performer Role="Manager" />
+      </Performers>
+    </Transition>
+    <Transition Id="Reject" Title="Reject" TargetState="Rejected">
+      <Performers>
+        <Performer Role="Manager" />
+      </Performers>
+    </Transition>
+    <UIPermissions>
+      <UIElement Name="Id">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Type">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Short">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Description">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="State">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Result">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="CreateDate">
+        <Permission Role="*" Level="Write" />
+      </UIElement>
+      <UIElement Name="Project">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Owner">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="AssignedTo">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Manager" Level="Write" />
+      </UIElement>
+    </UIPermissions>
+  </State>
+  <State Id="Assigned" Title="Assigned" Initial="false">
+    <Transition Id="Open" Title="Open" TargetState="Opened">
+      <Performers>
+        <Performer Role="Performer" />
+      </Performers>
+    </Transition>
+    <UIPermissions>
+      <UIElement Name="Id">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Type">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Short">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Description">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="State">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Result">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="CreateDate">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Project">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Owner">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="AssignedTo">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Manager" Level="Write" />
+      </UIElement>
+    </UIPermissions>
+  </State>
+  <State Id="Opened" Title="Opened" Initial="false">
+    <Transition Id="Done" Title="Done" TargetState="Done">
+      <Performers>
+        <Performer Role="Performer" />
+      </Performers>
+    </Transition>
+    <Transition Id="Postpone" Title="Postpone" TargetState="Postponed">
+      <Performers>
+        <Performer Role="Performer" />
+        <Performer Role="Manager" />
+      </Performers>
+    </Transition>
+    <UIPermissions>
+      <UIElement Name="Id">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Type">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Short">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Description">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="State">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Result">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="CreateDate">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Project">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Owner">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="AssignedTo">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Manager" Level="Write" />
+      </UIElement>
+    </UIPermissions>
+  </State>
+  <State Id="Postponed" Title="Postponed" Initial="false">
+    <Transition Id="Reopen" Title="Reopen" TargetState="Opened">
+      <Performers>
+        <Performer Role="Performer" />
+        <Performer Role="Manager" />
+      </Performers>
+    </Transition>
+    <UIPermissions>
+      <UIElement Name="Id">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Type">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Short">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="Description">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Owner" Level="Write" />
+      </UIElement>
+      <UIElement Name="State">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Result">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="CreateDate">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Project">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Owner">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="AssignedTo">
+        <Permission Role="*" Level="Read" />
+        <Permission Role="Manager" Level="Write" />
+      </UIElement>
+    </UIPermissions>
+  </State>
+  <State Id="Rejected" Title="Rejected" Initial="false">
+    <UIPermissions>
+      <UIElement Name="Id">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Type">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Short">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Description">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="State">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Result">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="CreateDate">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Project">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Owner">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="AssignedTo">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+    </UIPermissions>
+  </State>
+  <State Id="Done" Title="Done" Initial="false">
+    <UIPermissions>
+      <UIElement Name="Id">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Type">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Short">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Description">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="State">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Result">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="CreateDate">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Project">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="Owner">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+      <UIElement Name="AssignedTo">
+        <Permission Role="*" Level="Read" />
+      </UIElement>
+    </UIPermissions>
+  </State>
+</Statechart>

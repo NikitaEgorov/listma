@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Statechart Id="PerformersTestWorkflow" xmlns="urn:Listma:Statechart">
+	<State Id="State1" Title="State1" Initial="true" OnEnterHandler="" OnExitHandler="">
+		<Transition Id="T1" Title="T1" TargetState="State2">
+			<Performers>
+				<Performer Role="Role1" />
+			</Performers>
+		</Transition>
+		<Transition Id="T2" Title="T2" TargetState="State2">
+			<Performers>
+				<Performer Role="Role2" />
+			</Performers>
+		</Transition>
+	</State>
+	<State Id="State2" Title="State2" Initial="false" OnEnterHandler="" OnExitHandler="" />
+
+
+</Statechart>

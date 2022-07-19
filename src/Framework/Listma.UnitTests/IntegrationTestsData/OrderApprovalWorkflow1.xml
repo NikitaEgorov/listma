@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Statechart Id="OrderApprovalWorkflow1" xmlns="urn:Listma:Statechart">
+	<State Id="WaitingApprove" Title="Waiting Approve" Initial="true" OnEnterHandler="" OnExitHandler="">
+		<Transition Id="Approve" Title="Approve" TargetState="Approved" />
+		<Transition Id="Reject" Title="Reject" TargetState="Rejected" />
+	</State>
+	<State Id="Approved" Title="Approved" Initial="false" />
+	<State Id="Rejected" Title="Rejected" Initial="false"/>
+</Statechart>

@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BugTracker.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form id="master" runat="server">
+    <table cellpadding="4" width="100%">
+        <tr>
+            <td>
+                <div class="sitehider" >BugTracker</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table cellpadding="4" class="menu">
+                    <tr>
+                        <td>
+                            <a  href="/">Home</a>
+                        </td>
+                        <td>
+                            <a href="/Roles.aspx">Roles</a>
+                        </td>
+                        <td width="100%" align="right">
+                        
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                            &nbsp;
+                            <asp:LoginName ID="LoginName1" runat="server" 
+                                FormatString="Current user: [{0}]" />
+                            
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <asp:ContentPlaceHolder ID="Main" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
